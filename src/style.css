@@ -1,217 +1,165 @@
-/* --- SETĂRI GENERALE --- */
 :root {
-    --bg-main: #1a1a1a;
-    --bg-panel: #2d2d2d;
-    --bg-dark: #222222;
+    --glass-bg: rgba(25, 35, 25, 0.45);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --card-bg: rgba(20, 25, 20, 0.6);
     --text-main: #ffffff;
-    --text-muted: #9ca3af;
+    --text-muted: #b0cbb9;
+    
     --accent-green: #4ade80;
-    --accent-green-dark: #22c55e;
-    --accent-blue: #3b82f6;
-    --accent-orange: #f97316;
+    --accent-blue: #3ba0f6;
+    --accent-orange: #fb923c;
+    --accent-red: #f87171;
 }
 
 body {
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background-color: var(--bg-main);
+    margin: 0; padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: var(--text-main);
-    margin: 0;
-    padding: 20px;
+    background-color: #0b140e;
+}
+
+/* Fundalul viu cu vegetație din imaginea ta */
+.dashboard-backdrop {
+    min-height: 100vh;
+    width: 100%;
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), 
+                url('https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=1600') no-repeat center center fixed;
+    background-size: cover;
     display: flex;
     justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .dashboard-container {
     width: 100%;
-    max-width: 1000px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    max-width: 1200px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    box-sizing: border-box;
 }
 
-/* --- TEXT COLORS --- */
+/* Culori Text */
 .text-green { color: var(--accent-green); }
 .text-blue { color: var(--accent-blue); }
 .text-orange { color: var(--accent-orange); }
+.text-red { color: var(--accent-red); }
 .text-gray { color: var(--text-muted); }
 
-/* --- HEADER --- */
+/* Header */
 .top-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #444;
-    padding-bottom: 10px;
+    margin-bottom: 25px;
 }
+.title-area { display: flex; align-items: center; gap: 12px; }
+.title-area h1 { font-size: 24px; margin: 0; font-weight: 600; letter-spacing: 0.5px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+.title-area i { font-size: 24px; color: #60a5fa; }
 
-.title-area {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.title-area h1 {
-    font-size: 20px;
-    margin: 0;
-    font-weight: 400;
-    letter-spacing: 1px;
-}
-
-.connection-area {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.status-indicator {
-    color: var(--accent-green);
-    font-size: 14px;
-    font-weight: bold;
-}
+.connection-area { display: flex; align-items: center; gap: 20px; }
+.status-indicator { font-weight: 600; font-size: 14px; color: var(--accent-green); display: flex; align-items: center; gap: 6px; }
 
 .btn-outline {
-    background: transparent;
-    border: 1px solid var(--text-muted);
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.3);
     color: var(--text-main);
-    padding: 8px 16px;
-    border-radius: 4px;
+    padding: 8px 20px;
+    border-radius: 6px;
     cursor: pointer;
-    transition: 0.3s;
-}
-
-.btn-outline:hover { background: rgba(255,255,255,0.1); }
-
-/* --- PANOURI (CARDS) --- */
-.main-grid {
-    display: grid;
-    grid-template-columns: 3fr 2fr; /* Stânga e mai lată */
-    gap: 20px;
-}
-
-.panel {
-    background-color: var(--bg-panel);
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-}
-
-.panel h2 {
-    font-size: 14px;
-    color: var(--text-muted);
-    margin-top: 0;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #444;
-    padding-bottom: 10px;
-}
-
-/* --- MONITORIZARE --- */
-.metrics-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.metric-card {
-    background: var(--bg-dark);
-    padding: 15px 10px;
-    border-radius: 8px;
-}
-
-.metric-title { font-size: 12px; color: var(--text-muted); margin: 0 0 10px 0; }
-.icon-large { font-size: 40px; margin-bottom: 10px; }
-.metric-value { font-size: 24px; font-weight: bold; margin: 0 0 5px 0; }
-.metric-sub { font-size: 11px; color: var(--text-muted); margin: 0; }
-
-.env-metrics {
-    display: flex;
-    justify-content: space-around;
-    background: var(--bg-dark);
-    padding: 15px;
-    border-radius: 8px;
-}
-
-.env-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 12px;
-}
-
-.env-item i { font-size: 20px; }
-
-/* --- CONTROL MANUAL & BUTOANE --- */
-.right-column {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.mode-selector {
-    display: flex;
-    background: var(--bg-panel);
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.mode-btn {
-    flex: 1;
-    padding: 15px;
-    border: none;
-    background: transparent;
-    color: var(--text-muted);
     font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
+    backdrop-filter: blur(5px);
+    transition: 0.2s;
+}
+.btn-outline:hover { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.5); }
+
+/* Layout Grid */
+.main-layout { display: grid; grid-template-columns: 1.4fr 1fr; gap: 25px; }
+.left-column, .right-column { display: flex; flex-direction: column; gap: 20px; }
+
+/* Panouri */
+.panel { background: transparent; border: none; padding: 0; margin: 0; }
+.panel h2 {
+    font-size: 11px; color: rgba(255,255,255,0.6); margin: 0 0 12px 0;
+    text-transform: uppercase; letter-spacing: 1px; font-weight: bold;
+    display: flex; align-items: center; gap: 8px;
 }
 
-.mode-btn.active {
-    background-color: var(--accent-green-dark);
-    color: white;
+/* Cardurile de sticlă din imagine */
+.glass-card {
+    background: var(--card-bg) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-radius: 12px;
+    padding: 22px 15px;
+    text-align: center;
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.05), 0 8px 20px rgba(0,0,0,0.3);
+    transition: border 0.3s, box-shadow 0.3s;
 }
 
-.control-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+/* Iluminările colorate din poza ta */
+.glass-card.highlight-orange {
+    border: 1px solid rgba(251, 146, 60, 0.3) !important;
+    box-shadow: 0 0 15px rgba(251, 146, 60, 0.15), inset 0 1px 1px rgba(255,255,255,0.05);
+}
+.glass-card.highlight-red {
+    border: 1px solid rgba(248, 113, 113, 0.3) !important;
+    box-shadow: 0 0 15px rgba(248, 113, 113, 0.15), inset 0 1px 1px rgba(255,255,255,0.05);
 }
 
+.metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.metric-title { font-size: 11px; color: rgba(255,255,255,0.5); margin: 0 0 15px 0; font-weight: bold; letter-spacing: 0.5px; }
+.icon-large { font-size: 38px; margin-bottom: 12px; display: inline-block; }
+.metric-value { font-size: 32px; font-weight: bold; margin: 0; line-height: 1; }
+
+/* Textul mic albastru de sub voltajul panoului */
+.metric-sub-voltage { font-size: 12px; color: #60a5fa; margin: 8px 0 0 0; font-weight: 600; }
+
+.env-details { display: flex; flex-direction: column; justify-content: center; font-size: 16px; font-weight: 600; text-align: left; padding-left: 25px; color: #ffffff; }
+
+/* Dreapta: Mod Automat/Manual */
+.mode-selector-container { display: flex; justify-content: flex-end; }
+.mode-selector { display: flex; background: rgba(0,0,0,0.25); border-radius: 8px; padding: 4px; border: 1px solid var(--glass-border); width: 100%; }
+.mode-btn {
+    flex: 1; padding: 12px; border: none; background: transparent; color: rgba(255,255,255,0.4);
+    font-weight: bold; cursor: pointer; border-radius: 6px; transition: 0.2s; font-size: 13px; letter-spacing: 0.5px;
+}
+.mode-btn.active { background-color: #2e7d32; color: white; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+
+/* Panou Dreapta */
+.glass-panel-right h2 { margin-bottom: 20px; }
+.control-buttons { display: flex; flex-direction: column; gap: 15px; }
 .action-btn {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    border: none;
-    border-radius: 8px;
-    background: #3d3d3d;
-    color: white;
-    cursor: pointer;
-    transition: 0.3s;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 22px; border: 1px solid rgba(255,255,255,0.05); border-radius: 10px; background: rgba(20,25,20,0.4); color: white;
+    cursor: pointer; transition: 0.2s; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
+.action-btn i { font-size: 24px; margin-bottom: 8px; color: rgba(255,255,255,0.3); }
+.action-btn span { font-weight: bold; font-size: 14px; color: rgba(255,255,255,0.7); letter-spacing: 0.5px; }
+.action-btn.disabled { opacity: 0.25; cursor: not-allowed; }
+.action-btn.active-pump { border-color: var(--accent-green); background: rgba(26, 66, 42, 0.5); }
+.action-btn.active-pump i { color: var(--accent-green); }
 
-.action-btn i { font-size: 24px; margin-bottom: 10px; }
-.action-btn span { font-weight: bold; margin-bottom: 5px; }
+.warning-text { color: rgba(255,255,255,0.4); font-size: 11px; margin-top: 4px; text-transform: uppercase; font-weight: 600; }
 
-.action-btn.disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    background: #2a2a2a;
-}
-
-.warning-text {
-    color: var(--accent-orange);
-    font-size: 11px;
-    margin-top: 5px;
-}
-
-/* --- BARA DE ALERTE --- */
+/* Terminalul de jos rigid și negru din imaginea ta */
 .alert-bar {
-    padding: 15px 20px;
-    border-radius: 8px;
-    color: white;
+    background: #000000 !important;
+    padding: 14px 20px;
+    border-radius: 6px;
+    border: 1px solid #111;
+    color: #4ade80;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    margin-top: 25px;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.8);
 }
 
-.alert-bar.status-ok { background-color: var(--accent-green-dark); }
-.alert-bar.status-warning { background-color: var(--accent-orange); }
+@media (max-width: 850px) {
+    .main-layout { grid-template-columns: 1fr; }
+}
