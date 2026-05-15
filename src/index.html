@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Irrigation Control</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Panou Comandă Irigare</h1>
+            <button id="btnConnect" class="btn-primary">Conectare Stație</button>
+        </header>
+
+        <main class="dashboard">
+            <section class="card status-panel">
+                <h2>Status Senzori</h2>
+                <p>Baterie: <span id="valBaterie">--</span>%</p>
+                <p>Bazin: <span id="valBazin">--</span>%</p>
+                <p>Mod: <span id="valMod">DECONECTAT</span></p>
+            </section>
+
+            <section class="card control-panel">
+                <h2>Comenzi Manuale</h2>
+                <button id="btnP1" class="btn-action">Pornește Pompa Bazin</button>
+                <button id="btnP2" class="btn-action">Pornește Irigare</button>
+                <button id="btnAuto" class="btn-warning">Treci pe AUTOMAT</button>
+            </section>
+        </main>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

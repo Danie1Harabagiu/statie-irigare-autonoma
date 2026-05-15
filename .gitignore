@@ -1,0 +1,22 @@
+# Fișiere de sistem (Windows/Mac)
+Thumbs.db
+.DS_Store
+
+# Folderul de setări VS Code (opțional, unii îl preferă, dar de obicei e inutil pentru alții)
+.vscode/
+
+# Compilări și fișiere temporare (dacă folosești Arduino/C++)
+*.hex
+*.elf
+*.o
+build/
+out/
+
+# Python (dacă ai senzori gestionați prin scripturi)
+__pycache__/
+*.py[cod]
+.venv/
+
+# Fișiere cu parole sau date senzitive (Dacă ai setări de Wi-Fi)
+.env
+config.json
