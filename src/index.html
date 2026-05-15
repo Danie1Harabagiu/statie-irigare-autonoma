@@ -3,31 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Irrigation Control</title>
+    <title>Stare Stație Autonomă</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Panou Comandă Irigare</h1>
-            <button id="btnConnect" class="btn-primary">Conectare Stație</button>
+    <div class="dashboard-container">
+        
+        <header class="top-bar">
+            <div class="title-area">
+                <i class="fa-solid fa-solar-panel text-blue"></i>
+                <h1>STARE STAȚIE AUTONOMĂ</h1>
+            </div>
+            <div class="connection-area">
+                <span class="status-indicator" id="statusBT" style="color: #f97316;">
+                    <i class="fa-solid fa-link-slash"></i> DECONECTAT
+                </span>
+                <button id="btnConnect" class="btn-outline">CONECTEAZĂ</button>
+            </div>
         </header>
 
-        <main class="dashboard">
-            <section class="card status-panel">
-                <h2>Status Senzori</h2>
-                <p>Baterie: <span id="valBaterie">--</span>%</p>
-                <p>Bazin: <span id="valBazin">--</span>%</p>
-                <p>Mod: <span id="valMod">DECONECTAT</span></p>
+        <div class="main-grid">
+            <section class="panel">
+                <h2>MONITORIZARE (DATE LIVE)</h2>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <p class="metric-title">BATERIE</p>
+                        <i class="fa-solid fa-battery-three-quarters icon-large text-green"></i>
+                        <p class="metric-value text-green" id="valBaterie">--%</p>
+                    </div>
+                    <div class="metric-card">
+                        <p class="metric-title">BAZIN APĂ</p>
+                        <i class="fa-solid fa-glass-water icon-large text-blue"></i>
+                        <p class="metric-value text-blue" id="valBazin">--%</p>
+                    </div>
+                    <div class="metric-card">
+                        <p class="metric-title">UMIDITATE SOL</p>
+                        <i class="fa-solid fa-seedling icon-large text-green"></i>
+                        <p class="metric-value text-green" id="valSol">--%</p>
+                    </div>
+                </div>
             </section>
 
-            <section class="card control-panel">
-                <h2>Comenzi Manuale</h2>
-                <button id="btnP1" class="btn-action">Pornește Pompa Bazin</button>
-                <button id="btnP2" class="btn-action">Pornește Irigare</button>
-                <button id="btnAuto" class="btn-warning">Treci pe AUTOMAT</button>
-            </section>
-        </main>
+            <div class="right-column">
+                <div class="mode-selector">
+                    <button id="btnAuto" class="mode-btn active">[ AUTOMAT ]</button>
+                    <button id="btnManual" class="mode-btn">MANUAL</button>
+                </div>
+                <section class="panel control-panel">
+                    <h2 id="controlTitle">CONTROL MANUAL (DEZACTIVAT)</h2>
+                    <div class="control-buttons">
+                        <button id="btnP1" class="action-btn disabled">
+                            <i class="fa-solid fa-faucet-drip"></i>
+                            <span>UMPLERE BAZIN</span>
+                        </button>
+                        <button id="btnP2" class="action-btn disabled">
+                            <i class="fa-solid fa-shower"></i>
+                            <span>IRIGARE GRĂDINĂ</span>
+                        </button>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <section class="panel" style="background: #111;">
+            <h2 style="color: #4ade80;">MONITOR COMUNICAȚIE (SERIAL)</h2>
+            <div id="serialConsole" style="background: #000; color: #00ff00; font-family: 'Courier New', monospace; padding: 10px; height: 120px; overflow-y: auto; border: 1px solid #333; font-size: 13px; line-height: 1.5;">
+                > Se așteaptă conectarea stației...
+            </div>
+        </section>
+
+        <div class="alert-bar status-ok" id="alertBar">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <i class="fa-solid fa-circle-check"></i>
+                <span id="alertText">SISTEM GATA DE START</span>
+            </div>
+        </div>
     </div>
     <script src="main.js"></script>
 </body>
